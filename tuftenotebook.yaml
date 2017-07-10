@@ -1,0 +1,91 @@
+preflight: templates/tuftenotebook.tex
+author: Leighton Pritchard
+project:
+  - number     : E000275-00
+    name       : BBSRC - Responsive Mode
+    activity   : 8200-00
+    description: Project Time
+  - number     : E000697-00
+    name       : Forest Research - Phytophthora Mitigation
+    activity   : 8200-00
+    description: Project Time
+  - number     : E000703-00
+    name       : Scottish Govt Phytophthora
+    activity   : 8200-00
+    description: Project Time
+  - number     : E000767-00
+    name       : IBioIB - Introductory Bioinfo Training
+    activity   : 8200-00
+    description: Project Time
+  - number     : S200004-00
+    name       : Theme 2 WP2.1 RD4 (Dickeya, phylogenomics)
+    activity   : 8200-00
+    description: Project Time
+  - number     : S200004-00
+    name       : Theme 2 WP2.1 RD5 (Pectobacterium, diagnostics)
+    activity   : 8200-00
+    description: Project Time
+  - number     : S200004-00
+    name       : Theme 2 WP2.2 RD6 (E. coli, genomics)
+    activity   : 8200-00
+    description: Project Time
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8000-10
+    description: Annual Leave
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8000-15
+    description: Other Leave
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8010-10
+    description: Sickness Absence
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8050-10
+    description: Training
+    - subsection: Reading literature
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8050-30
+    description: Teaching/Mentoring/Reviewing
+    - subsection: Ad hoc guidance
+    - subsection: ENZA
+    - subsection: IBioIC
+    - subsection: NUIG
+    - subsection: Internal Examiner
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-10
+    description: Creative time
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-30
+    description: Internal Meetings
+    - subsection: Bacteriology
+    - subsection: Bioinformatics hub
+    - subsection: ICS group meeting
+    - subsection: JHI Open House
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-40
+    description: General Operations
+    - subsection: Expenses
+    - subsection: Email catchup/cleanup
+    - subsection: Lab Book
+    - subsection: Return to work
+    - subsection: Timesheets
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-60
+    description: Union
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-72
+    description: Staff Management
+  - number     : T000640-11
+    name       : ICS group costs Timesheets
+    activity   : 8100-74
+    description: Laboratory Management
+    
