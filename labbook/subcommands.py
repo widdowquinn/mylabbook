@@ -210,7 +210,7 @@ def build_project_header(project):
     their lab book.
     """
     # Construct main header components
-    main = ["% {1}, {2}",
+    main = ["\n\n%% {1}, {2}",
               "%{3}",
               "%\\section{{{0} {1}, {2}: }}"]
     rule = '%' * (len(project['name'] + project['description']) + 4)
