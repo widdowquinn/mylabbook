@@ -1,8 +1,15 @@
 # Exclude emacs temp files
 *~
+*#*
 
 # Exclude OSX files
 .DS_Store
 
 # Exclude deveoper virtualenv
 venv-*
+
+# Exclude distribution/build files
+build/
+dist/
+labbook.egg-info/
+__pycache__
