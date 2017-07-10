@@ -24,8 +24,8 @@ labbook.py make_blank --date 2017-07-01
 The template file will be in `YAML` format (see below) and will be searched for in (in order):
 
 ```
-~/labbook.yaml
 ./labbook.yaml
+~/labbook.yaml
 ```
 
 or should be passed with the `-y` or `--yaml` argument, e.g.

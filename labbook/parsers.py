@@ -84,6 +84,9 @@ def build_parser_make_blank(subparsers, parents=None):
     parser.add_argument('-y', '--yaml', dest='yamlfile',
                         action='store', default=None,
                         help='path to YAML config file')
+    parser.add_argument('-o', '--outdir', dest='outdirname',
+                        action='store', default=None,
+                        help='path to output directory for lab book blank')
     parser.set_defaults(func=subcommands.subcmd_make_blank)
     
 
@@ -107,6 +110,7 @@ def parse_cmdline():
 
     # Add subcommand parsers to the main parser's subparsers
     build_parser_make_blank(subparsers, parents=[parser_common])
+    print(subparsers)
 
     # Catch calling the main script with no arguments (which would otherwise
     # not give a help message)
