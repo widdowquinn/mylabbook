@@ -1,6 +1,11 @@
-preflight: templates/tuftenotebook.tex
+---
+# Template for Leighton Pritchard's JHI notebook
+# Author: Leighton Pritchard
+# (C) The James Hutton Institute 2017
+#
+preflight: templates/preflight_tuftenotebook.tex
 author: Leighton Pritchard
-project:
+projects:
   - number     : E000275-00
     name       : BBSRC - Responsive Mode
     activity   : 8200-00
@@ -45,16 +50,18 @@ project:
     name       : ICS group costs Timesheets
     activity   : 8050-10
     description: Training
-    - subsection: Reading literature
+    subsections:
+      - name: Reading literature
   - number     : T000640-11
     name       : ICS group costs Timesheets
     activity   : 8050-30
     description: Teaching/Mentoring/Reviewing
-    - subsection: Ad hoc guidance
-    - subsection: ENZA
-    - subsection: IBioIC
-    - subsection: NUIG
-    - subsection: Internal Examiner
+    subsections:
+      - name: Ad hoc guidance
+      - name: ENZA
+      - name: IBioIC
+      - name: NUIG
+      - name: Internal Examiner
   - number     : T000640-11
     name       : ICS group costs Timesheets
     activity   : 8100-10
@@ -63,19 +70,21 @@ project:
     name       : ICS group costs Timesheets
     activity   : 8100-30
     description: Internal Meetings
-    - subsection: Bacteriology
-    - subsection: Bioinformatics hub
-    - subsection: ICS group meeting
-    - subsection: JHI Open House
+    subsections:
+      - name: Bacteriology
+      - name: Bioinformatics hub
+      - name: ICS group meeting
+      - name: JHI Open House
   - number     : T000640-11
     name       : ICS group costs Timesheets
     activity   : 8100-40
     description: General Operations
-    - subsection: Expenses
-    - subsection: Email catchup/cleanup
-    - subsection: Lab Book
-    - subsection: Return to work
-    - subsection: Timesheets
+    subsections:
+      - name: Expenses
+      - name: Email catchup/cleanup
+      - name: Lab Book
+      - name: Return to work
+      - name: Timesheets
   - number     : T000640-11
     name       : ICS group costs Timesheets
     activity   : 8100-60
