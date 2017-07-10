@@ -38,9 +38,10 @@ setup(
     platforms="Posix; MacOS X",
     url="https://github.com/widdowquinn/labbook",
     download_url="https://github.com/widdowquinn/labbook/releases",
-    scripts=['labbook.py'],
+    scripts=['mylabbook.py'],
     packages=['labbook'],
     install_requires=[],
     package_data={},
+    data_files=[('templates', ['templates/preflight_tuftenotebook.tex'])],
     classifiers=[],
     )
