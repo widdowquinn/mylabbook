@@ -171,8 +171,12 @@ def subcmd_make_blank(args, logger):
             logger.info("Creating output directory %s", args.outdirname)
             os.makedirs(args.outdirname, exist_ok=True)
         outpath = os.path.join(args.outdirname, outfname)
-    logger.info("Attempting to write lab book blank to %s", outpath)
 
+    # Does the output notebook already exist (let's not overwrite)
+    if os.path.isfile(outpath):
+        logger.error("%s exists. Will not overwrite (exiting)", outpath)
+        raise SystemError(1)
+        
     # Write the blank notebook
     logger.info("Writing blank notebook to %s", outpath)
     with open(outpath, 'w') as ofh:
