@@ -120,62 +120,90 @@ docend = """\n\n
 """
 
 
+def get_isodate(args):
+    """Return ISO 8601 format date for lab book title.
+
+    If args.date is not specified, returns today's date. Notifies the passed
+    logger.
+    """
+    if args.date is not None:
+        docdate = iso8601.parse_date(args.date).date()
+    else:
+        docdate = date.today()
+    return docdate
+
+
+def get_yamlfile(args):
+    """Return path to YAML config file.
+    
+    If args.yamlfile is specified, returns this value. Otherwise returns
+    ./.labbook.yaml or ~/.labbook.yaml (in that order), if it exists.
+    """
+    if args.yamlfile is not None:
+        yamlpath = args.yamlfile
+    elif os.path.isfile('./.labbook.yaml'):
+        yamlpath = './.labbook.yaml'
+    else:
+        yamlpath = os.path.join(os.path.expanduser('~'), '.labbook.yaml')
+    return yamlpath
+
+
+def parse_yamlfile(yamlpath):
+    """Returns Python object describing YAML template contents.
+    """
+    with open(yamlpath) as yfh:
+        yamldata = yaml.load(yfh.read())
+    if not os.path.isfile(yamldata['preflight']):
+        raise ValueError("Preflight LaTeX file %s not found" %
+                         yamldata['preflight'])
+    return yamldata
+
 
 def subcmd_make_blank(args, logger):
     """Run `make_blank` subcommand operations.
     """
     # Get the appropriate date. If args.date is provided, use this. Otherwise,
     # use today's date.
-    if args.date is not None:
-        logger.info("Using passed date: %s", args.date)
-        docdate = iso8601.parse_date(args.date).date()
-    else:
-        logger.info("Using today's date: %s", date.today())
-        docdate = date.today()
+    try:
+        docdate = get_isodate(args)
+    except iso8601.ParseError:
+        logger.error("Could not parse date %s (exiting)", args.date)
+        raise SystemError(1)
     lbdate = docdate.isoformat()
+    logger.info("Using date %s", lbdate)
 
-    # Identify the YAML template file. Use the passed file first, then check
-    # './.labbook.yaml' and finally '~/.labbook.yaml'
-    if args.yamlfile is not None:
-        yamlpath = args.yamlfile
-    elif os.path.isfile('./.labbook.yaml'):
-        yamlpath = './.labbook.yaml'
-    elif os.path.isfile(os.path.join(os.path.expanduser('~'),
-                                     '.labbook.yaml')):
-        yamlpath = os.path.join(os.path.expanduser('~'), '.labbook.yaml')
-    else:
+    # Identify the YAML template file.
+    try:
+        yamlpath = get_yamlfile(args)
+    except IOError:
         logger.error("No template file found (exiting)")
-        raise SystemExit(1)
+        raise SystemExit(1)        
     logger.info("Using YAML template from %s", yamlpath)
 
     # Load data from the YAML template file
     logger.info("Loading data from %s", yamlpath)
-    with open(yamlpath) as yfh:
-        yamldata = yaml.load(yfh.read())
     try:
-        if not os.path.isfile(yamldata['preflight']):
-            logger.error("Preflight LaTeX file %s not found (exiting)",
-                         yamldata['preflight'])
-            raise SystemExit(1)
-    except KeyError:
-        logger.error("YAML template does not contain preflight LaTeX (exiting)")
-        raise SystemExit(1)
+        yamldata = parse_yamlfile(yamlpath)
+    except ValueError:
+        logger.error("Could not parse YAML template (exiting)")
+        raise SystemError(1)
     
-    # Generate path to output blank file, creating the intermediate directories
-    # if needed.
+    # Generate path to output blank labbook
     outfname = lbdate + '.tex'
     if args.outdirname is None:
         outpath = outfname
     else:
-        if not os.path.isdir(args.outdirname):
-            logger.info("Creating output directory %s", args.outdirname)
-            os.makedirs(args.outdirname, exist_ok=True)
         outpath = os.path.join(args.outdirname, outfname)
 
     # Does the output notebook already exist (let's not overwrite)
     if os.path.isfile(outpath):
         logger.error("%s exists. Will not overwrite (exiting)", outpath)
         raise SystemError(1)
+        
+    # Create the output directory if needed
+    if args.outdirname is not None and not os.path.isdir(args.outdirname):
+        logger.info("Creating output directory %s", args.outdirname)
+        os.makedirs(args.outdirname, exist_ok=True)
         
     # Write the blank notebook
     logger.info("Writing blank notebook to %s", outpath)
