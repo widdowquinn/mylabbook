@@ -109,8 +109,9 @@ def parse_cmdline():
     parser_common = build_common_parser()
 
     # Add subcommand parsers to the main parser's subparsers
-    build_parser_make_blank(subparsers, parents=[parser_common])
-    print(subparsers)
+    build_parser_make_blank(subpar
+
+                            sers, parents=[parser_common])
 
     # Catch calling the main script with no arguments (which would otherwise
     # not give a help message)
