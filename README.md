@@ -50,6 +50,15 @@ It might be nice to enable conversions, say to Markdown, with something like:
 labbook.py convert <input LaTeX> -o <output file> -f <format>
 ```
 
+We may also be able to have the script manage interaction with a GitHub or other repository (perhaps private?)
+
+```
+mylabbook.py git --initialise
+mylabbook.py git --commit
+```
+
+with the remote repo being defined in the YAML file.
+
 #### Definition of `\section{}`s
 
 We define the content of the lab book in the template file to conform to institute time-sheets - recording time against the current designations of project numbers and titles. These are represented as `\section{}`s in the resulting lab book.
