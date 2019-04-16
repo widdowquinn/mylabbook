@@ -1,2 +1,3 @@
+pandas
 iso8601
 PyYAML
